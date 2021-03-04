@@ -1,17 +1,26 @@
-<h2>Productos</h2>
+<h2>Verduras</h2>
 
-<div *ngFor="let pollo of products">
+<div *ngFor="let verdura of products">
   <h3>
-    <a [title]="pollo.name + ' details'">
-      {{ pollo.name }}
+    <a
+      [title]="verdura.name + ' details'"
+      [routerLink]="['/products', verdura.id]"
+    >
+      {{ verdura.name }}
     </a>
   </h3>
-  <p *ngIf="pollo.description">
-    Description: {{ pollo.description }}
+  <p *ngIf="verdura.description">
+    Description: {{ verdura.description }}
+  </p>
+  <p>
+    Precio: {{ verdura.price + "€" }}
   </p>
   <button (click)="share()">
     Share
   </button>
-  <app-product-alerts [product]="pollo" (polleteDeLaVentana)="onPollete()">
+  <button class="botonsitoNotify" *ngIf="verdura.available">
+    Notify
+  </button>
+  <app-product-alerts [product]="verdura" (polleteDeLaVentana)="onPollete()">
   </app-product-alerts>
 </div>
